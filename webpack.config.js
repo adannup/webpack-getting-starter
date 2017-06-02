@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const extractPlugin = new ExtractTextPlugin({
 	filename: 'main.css'
 });
@@ -10,7 +11,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
-		publicPath: '/dist'
+		//publicPath: '/dist'
 	},
 	module: {
 		rules: [
@@ -34,6 +35,9 @@ module.exports = {
 	},
 	plugins: [
 		extractPlugin,
-		new webpack.optimize.UglifyJsPlugin()
+		new webpack.optimize.UglifyJsPlugin(),
+		new HtmlWebpackPlugin({
+			template: './src/index.html'
+		})
 	]
 };
