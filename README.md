@@ -15,6 +15,58 @@ Antes de comenzar es necesario conocer los 4 principales conceptos de webpack [e
 * [[loader]](https://webpack.js.org/concepts/loaders)
 * [[plugin]](https://webpack.js.org/concepts/plugins)
 
+### entry
+Entry puede tener una sola entrada, 
+
+```javascript
+module.exports = {
+	entry: './src/js/app.js',
+  ...
+};
+```
+o varias entradas.
+
+```javascript
+module.exports = {
+	entry: {
+		main: './src/js/app.js',
+		vendor: './src/js/vendor.js'
+	},
+  ...
+};
+```
+
+### output
+
+```javascript
+module.exports = {
+  ...
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'bundle.js',
+		publicPath: '/dist'
+	},
+  ...
+};
+```
+* path: Es la ruta absoluta hacia que directorio se guardara el archivo de salida.
+* filename: Nombre del archivo de salida.
+* publicPath: Es la ruta absoluta que webpack buscara cuando se ejecute en modo servidor, ya que los archivos se almacenaran dinamicamente en cache, esta opcion es recomenda cuando solo se trabaja en produccion.
+
+En caso de que se tengan varios archivos de entrada, se deben de generar dinamicamente los nombre de los archivos con los siguientes parametro en ```[filename]```:
+
+```javascript
+module.exports = {
+  ...
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: '[name].js',
+		publicPath: '/dist'
+	},
+  ...
+};
+```
+
 ## Primeros pasos
 Despues de conocer los conceptos, los primeros pasos se encuentran dentro de la documentacion de webpack https://webpack.js.org/guides/get-started/
 
