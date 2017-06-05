@@ -53,7 +53,20 @@ module.exports = {
 		extractPlugin,
 		new webpack.optimize.UglifyJsPlugin(),
 		new HtmlWebpackPlugin({
+			filename: 'index.html',
 			template: './src/index.html'
+		}),
+		/*
+		Esto carga dinamicamente en el head, el bundle.js y el main.css
+		new HtmlWebpackPlugin({
+			filename: 'users.html',
+			template: './src/users.html'
+		}),*/
+		new HtmlWebpackPlugin({
+			filename: 'users.html',
+			template: './src/users.html',
+			chunks: []
+			//Al indicar los chunks vacios, no le pasa nada el bundle.js ni el main.css
 		}),
 		new CleanWebpackPlugin(['dist'])
 	]
